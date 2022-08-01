@@ -1,5 +1,4 @@
-// import s from 'components/Navigation/MoviesPage.module.css';
-// import { useParams } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 const Reviews = ({ moviesIdReview }) => {

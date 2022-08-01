@@ -2,10 +2,7 @@ import { lazy, Suspense } from 'react';
 import './App.css';
 import Navigation from 'components/Navigation/Navigation';
 import { Route, Switch } from 'react-router-dom';
-// import HomePage from 'components/HomePage/HomePage';
-// import MoviesPage from 'components/MoviesPage/MoviesPage';
-// import NotFoundView from 'components/NotFoundView/NotFoundView';
-// import MovieDetailsPage from 'components/MovieDetailsPage/MovieDetailsPage';
+
 
 const HomePage = lazy(() => import('components/HomePage/HomePage.jsx'));
 const MoviesPage = lazy(() => import('components/MoviesPage/MoviesPage.jsx'));

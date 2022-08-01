@@ -1,4 +1,4 @@
-// import s from 'components/Navigation/MoviesPage.module.css';
+
 import PropTypes from 'prop-types';
 
 const Cast = ({ moviesIdCast }) => {
@@ -21,11 +21,7 @@ const Cast = ({ moviesIdCast }) => {
                 width="150"
               />
             )}
-            {/* <img
-              src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-              alt={cast.name}
-              width="150"
-            /> */}
+           
             <p>{cast.name}</p>
             <p>Character: {cast.character}</p>
           </div>

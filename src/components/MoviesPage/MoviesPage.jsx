@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getMoviesQuery } from 'Api/Api';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 
-// import s from 'components/Navigation/MoviesPage.module.css';
+
 
 const MoviesPage = () => {
   const [findFilm, setFindFilm] = useState(null);
@@ -11,9 +11,7 @@ const MoviesPage = () => {
   const history = useHistory();
   const location = useLocation();
   const queryUrl = new URLSearchParams(location.search).get('query');
-  // console.log('queryUrl', queryUrl);
-  // console.log(location);
-
+ 
   useEffect(() => {
     if (findFilm === null) return;
     getMoviesQuery(findFilm).then(setFilms);
@@ -21,7 +19,7 @@ const MoviesPage = () => {
 
   useEffect(() => {
     if (queryUrl === null) return;
-    // console.log('+++');
+   
     setFindFilm(queryUrl);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -33,13 +31,11 @@ const MoviesPage = () => {
       ...location,
       search: `query=${query}`,
     });
-    // console.log(query);
+   
     e.target.elements.query.value = '';
   };
 
-  // if (queryUrl !== null) {
-  //   setFindFilm(queryUrl);
-  // }
+ 
 
   return (
     <>
@@ -51,7 +47,7 @@ const MoviesPage = () => {
       {films &&
         films.map(film => (
           <li key={film.id}>
-            {/* <Link to={`movies/${film.id}`}>{film.title}</Link> */}
+           
             <Link
               to={{
                 pathname: `movies/${film.id}`,

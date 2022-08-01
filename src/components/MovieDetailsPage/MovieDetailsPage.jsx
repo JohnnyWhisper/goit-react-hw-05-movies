@@ -11,26 +11,26 @@ import { useState, useEffect, useRef } from 'react';
 import Reviews from 'components/Reviews/Reviews';
 import Cast from 'components/Cast/Cast';
 
-// import s from 'components/Navigation/MoviesPage.module.css';
+
 
 const MovieDetailsPage = () => {
   const match = useRouteMatch();
-  // console.log(match.url);
+
 
   const [moviesIdInfo, setMoviesIdInfo] = useState(null);
   const [moviesIdReview, setMoviesIdReview] = useState(null);
   const [moviesIdCast, setMoviesIdCast] = useState(null);
 
   const { moviesId } = useParams();
-  // console.log('moviesId',moviesId);
+ 
 
   const routerState = useRef(null);
-  // console.log(routerState.current);
+ 
 
   const history = useHistory();
-  // console.log('history', history);
+  
   const location = useLocation();
-  // console.log('location', location.state);
+  
 
   useEffect(() => {
     if (!routerState.current) {
@@ -38,7 +38,7 @@ const MovieDetailsPage = () => {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // setTimeout(() => console.log('router.cur', routerState.current), 40);
+
 
   useEffect(() => {
     getMoviesById(moviesId).then(setMoviesIdInfo);
@@ -53,7 +53,6 @@ const MovieDetailsPage = () => {
           const paramsPath = routerState.current.params.pathname;
           const paramsSearch = routerState.current.params.search;
 
-          // console.log(`${paramsPath}${paramsSearch}`);
           history.push(`${paramsPath}${paramsSearch}`);
         }}
       >
