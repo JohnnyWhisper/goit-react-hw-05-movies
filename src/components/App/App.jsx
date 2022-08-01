@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import './App.css';
 import Navigation from 'components/Navigation/Navigation';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 
 const HomePage = lazy(() => import('components/HomePage/HomePage.jsx'));
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Navigation />
       <Suspense fallback={<div>Loading</div>}>
-        <Switch>
+        <Routes>
           <Route path="/" exact>
             <HomePage />
           </Route>
@@ -33,7 +33,7 @@ function App() {
           <Route>
             <NotFoundView />
           </Route>
-        </Switch>
+        </Routes>
       </Suspense>
     </div>
   );
