@@ -1,26 +1,51 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchReviews } from 'services/api';
 
-import PropTypes from 'prop-types';
+const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [isLoad, setIsLoad] = useState(false);
+  const [error, setError] = useState(null);
+  const { movieId } = useParams();
 
-const Reviews = ({ moviesIdReview }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const {
+          data: { results },
+        } = await fetchReviews(movieId);
+
+        setReviews(results);
+        setIsLoad(true);
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+    fetchData();
+  }, [movieId]);
+
+  const noReviews = reviews.length === 0 && isLoad;
+
   return (
     <>
-      {moviesIdReview.length === 0 ? (
-        <p>No reviews</p>
-      ) : (
-        moviesIdReview &&
-        moviesIdReview.map(review => (
-          <div key={review.id}>
-            <h3>{review.author}</h3>
-            <p>{review.content}</p>
-          </div>
-        ))
+      {error && <p>{error}</p>}
+      {noReviews && <p>We don`t have any reviews for this movie</p>}
+      {reviews.length > 0 && (
+        <ul>
+          {reviews.map(({ id, author, content }) => {
+            return (
+              <li key={id}>
+                <p>
+                  <b>Author: {author}</b>
+                </p>
+                <p>{content}</p>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </>
   );
-};
-
-Reviews.propTypes = {
-  moviesIdReview: PropTypes.array.isRequired,
 };
 
 export default Reviews;

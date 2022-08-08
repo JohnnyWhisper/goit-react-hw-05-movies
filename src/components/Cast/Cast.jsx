@@ -1,37 +1,56 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { fetchCast } from 'services/api';
 
-import PropTypes from 'prop-types';
+const Cast = () => {
+  const [credits, setCredits] = useState([]);
+  const [error, setError] = useState(null);
+  const { movieId } = useParams();
 
-const Cast = ({ moviesIdCast }) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const {
+          data: { cast },
+        } = await fetchCast(movieId);
+        setCredits(cast);
+      } catch (e) {
+        setError(e.message);
+      }
+    };
+    fetchData();
+  }, [movieId]);
+
+  const getProfileImg = img => {
+    return img
+      ? `https://image.tmdb.org/t/p/original${img}`
+      : 'https://upload.wikimedia.org/wikipedia/commons/archive/a/ac/20121003093557%21No_image_available.svg';
+  };
+
   return (
     <>
-      <h3>Cast</h3>
-      {moviesIdCast &&
-        moviesIdCast.cast.map(cast => (
-          <div key={cast.id}>
-            {cast.profile_path === null ? (
-              <img
-                src={`https://demofree.sirv.com/nope-not-here.jpg?w=150`}
-                alt={cast.name}
-                width="150"
-              />
-            ) : (
-              <img
-                src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
-                alt={cast.name}
-                width="150"
-              />
-            )}
-           
-            <p>{cast.name}</p>
-            <p>Character: {cast.character}</p>
-          </div>
-        ))}
+      {error && <p>{error}</p>}
+      {credits && (
+        <ul>
+          {credits.map(({ id, profile_path, name, character }) => {
+            return (
+              <li key={id}>
+                <img
+                  src={getProfileImg(profile_path)}
+                  alt={name}
+                  width={150}
+                  height={300}
+                  loading="lazy"
+                />
+                <p>--- {name} ---</p>
+                <p>Character: {character}</p>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </>
   );
-};
-
-Cast.propTypes = {
-  moviesIdCast: PropTypes.object.isRequired,
 };
 
 export default Cast;
