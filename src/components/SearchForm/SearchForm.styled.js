@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 export const StyledForm = styled.div`
   display: flex;
+  margin-left: 15px;
+  margin-top: 15px;
 `;
 
 export const StyledSubmit = styled.form`

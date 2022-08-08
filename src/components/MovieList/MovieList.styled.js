@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
 export const LinkItem = styled.li`
-  padding: 20px;
+  padding: 10px;
 `;
 
 export const LinkStyled = styled(Link)`
@@ -17,12 +17,12 @@ export const LinkStyled = styled(Link)`
   margin-bottom: 0;
 
   @media (min-width: 768px) {
-    font-size: 22px;
+    font-size: 18px;
   }
   @media (min-width: 1024px) {
-    font-size: 30px;
+    font-size: 25px;
   }
   @media (min-width: 1280px) {
-    font-size: 34px;
+    font-size: 30px;
   }
 `;

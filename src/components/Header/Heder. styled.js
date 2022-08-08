@@ -7,7 +7,7 @@ export const NavBar = styled.header`
 
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: #f0e68c;
+  background-color:  #3f51b5;
 
   box-shadow: 0px 2px 10px 1px #240b36;
   border-bottom-left-radius: 10px;
@@ -20,7 +20,7 @@ export const NavLinkStyled = styled(NavLink)`
   color: rgba(255, 255, 255, 0.5);
   font-size: 24px;
   font-weight: 700;
-  color: #000000;
+  color: #ffffff;
 
   text-transform: uppercase;
 
@@ -52,5 +52,5 @@ export const LinkWrapper = styled.div`
   align-items: center;
   gap: 20px;
 
-  margin-left: 28px;
+  margin-left: 30px;
 `;
