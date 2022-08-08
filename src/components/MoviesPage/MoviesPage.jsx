@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getMoviesQuery } from 'Api/Api';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 
 
 
@@ -8,7 +8,7 @@ const MoviesPage = () => {
   const [findFilm, setFindFilm] = useState(null);
   const [films, setFilms] = useState(null);
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const queryUrl = new URLSearchParams(location.search).get('query');
  
@@ -27,7 +27,7 @@ const MoviesPage = () => {
     e.preventDefault();
     const query = e.target.elements.query.value;
     setFindFilm(query);
-    history.push({
+    navigate.push({
       ...location,
       search: `query=${query}`,
     });

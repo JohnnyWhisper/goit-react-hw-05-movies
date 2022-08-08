@@ -2,8 +2,8 @@ import {
   useParams,
   Route,
   Link,
-  useRouteMatch,
-  useHistory,
+  useMatch,
+  useNavigate,
   useLocation,
 } from 'react-router-dom';
 import { getMoviesById, getMoviesReviews, getMoviesCasts } from 'Api/Api';
@@ -14,7 +14,7 @@ import Cast from 'components/Cast/Cast';
 
 
 const MovieDetailsPage = () => {
-  const match = useRouteMatch();
+  const match = useMatch();
 
 
   const [moviesIdInfo, setMoviesIdInfo] = useState(null);
@@ -27,7 +27,7 @@ const MovieDetailsPage = () => {
   const routerState = useRef(null);
  
 
-  const history = useHistory();
+  const navigate = useNavigate();
   
   const location = useLocation();
   
@@ -53,7 +53,7 @@ const MovieDetailsPage = () => {
           const paramsPath = routerState.current.params.pathname;
           const paramsSearch = routerState.current.params.search;
 
-          history.push(`${paramsPath}${paramsSearch}`);
+          navigate.push(`${paramsPath}${paramsSearch}`);
         }}
       >
         Назад
